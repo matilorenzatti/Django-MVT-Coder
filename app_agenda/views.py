@@ -65,29 +65,29 @@ def buscar_cliente(request):
 
 def proveedor_formulario(request):
     if request.method == "POST":
-        formulario_c = ClienteFormulario(request.POST)
+        formulario_p = ProveedorFormulario(request.POST)
 
-        if formulario_c.is_valid():
-            data = formulario_c.cleaned_data
-            cliente = Clientes(nombre=data["nombre"], apellido=data["apellido"] , mail=data["mail"] , fecha_nacimiento=data["fecha_nacimiento"])
-            cliente.save()
-            return render(request, "app_agenda/cliente_agregado.html")
+        if formulario_p.is_valid():
+            data = formulario_p.cleaned_data
+            proveedor = Proveedores(nombre=data["nombre"], apellido=data["apellido"] , mail=data["mail"] , telefono=data["telefono"])
+            proveedor.save()
+            return render(request, "app_agenda/proveedor_agregado.html")
     else:
-        formulario_c = ClienteFormulario()
-    return render(request, "app_agenda/cliente_form.html", {"formulario_c": formulario_c})
+        formulario_p = ProveedorFormulario()
+    return render(request, "app_agenda/proveedor_form.html", {"formulario_p": formulario_p})
 
 
 def busqueda_proveedor(request):
-    return render(request, "app_agenda/cliente_busqueda.html")
+    return render(request, "app_agenda/proveedor_busqueda.html")
 
 
 def buscar_proveedor(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
-        clientes = Clientes.objects.filter(nombre__icontains = nombre)
-        return render(request, "app_agenda/clientes.html", {"clientes": clientes})
+        proveedores = Proveedores.objects.filter(nombre__icontains = nombre)
+        return render(request, "app_agenda/proveedores.html", {"proveedores": proveedores})
     else:
-        return render(request, "app_agenda/clientes.html", {"clientes": []})
+        return render(request, "app_agenda/proveedores.html", {"proveedores": []})
 
 
 def articulo_formulario(request):

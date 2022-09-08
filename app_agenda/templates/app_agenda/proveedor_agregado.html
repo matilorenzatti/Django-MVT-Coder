@@ -2,8 +2,7 @@
 
 {% load static %}
 
-{% block proveedores %}
-
+{% block proveedor_agregado %}
 
 <br>
 <br>
@@ -12,7 +11,7 @@
 
         <!-- Clientes Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Proveedores</h2>
-        
+
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -20,28 +19,18 @@
             <div class="divider-custom-line"></div>
         
     </div>
+   
 
     <br>
-    <br>
 
-    <h5> <a href="{% url 'proveedor-formulario' %}">Agregar nuevo proveedor</a> </h5>
-    <br>
-    <br>
-    <h5> <a href="{% url 'proveedor-buscar' %}">Buscar proveedor</a> </h5>
-    <br>
+    <h1>¡PROVEEDOR AGREGADO CON EXITO!</h1>
 
-    <br>
-    <h1>Proveedores agregados:</h1>
-    <br>
-
-    <ul>
-        {% for x in proveedores %}
-            <li><b>Nombre:</b> {{x.nombre}}   -   <b>Apellido:</b> {{x.apellido}}   -   <b>Mail:</b> {{x.mail}}   -   <b>Telefono:</b> {{x.telefono}}</li>
-            <br>
-        {% endfor %}
-    </ul>
-    
 
 </section>
 
-{% endblock proveedores %}
+<br>
+<br>
+<h5><a href="{% url 'inicio' %}">Volver al inicio</a></h5>
+
+
+{% endblock proveedor_agregado %}

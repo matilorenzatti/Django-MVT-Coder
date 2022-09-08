@@ -2,8 +2,7 @@
 
 {% load static %}
 
-{% block proveedores %}
-
+{% block proveedores_form %}
 
 <br>
 <br>
@@ -22,26 +21,18 @@
     </div>
 
     <br>
+
+    <h1>Formulario - ingreso proveedor:</h1>
     <br>
 
-    <h5> <a href="{% url 'proveedor-formulario' %}">Agregar nuevo proveedor</a> </h5>
-    <br>
-    <br>
-    <h5> <a href="{% url 'proveedor-buscar' %}">Buscar proveedor</a> </h5>
-    <br>
+    <form action="{% url 'proveedor-formulario' %}" method="post">
+        {% csrf_token %}
 
-    <br>
-    <h1>Proveedores agregados:</h1>
-    <br>
+        {{formulario_p.as_p}}
 
-    <ul>
-        {% for x in proveedores %}
-            <li><b>Nombre:</b> {{x.nombre}}   -   <b>Apellido:</b> {{x.apellido}}   -   <b>Mail:</b> {{x.mail}}   -   <b>Telefono:</b> {{x.telefono}}</li>
-            <br>
-        {% endfor %}
-    </ul>
-    
+        <input type="submit" value="Crear proveedor">
+
+    </form>
 
 </section>
-
-{% endblock proveedores %}
+{% endblock proveedores_form %}

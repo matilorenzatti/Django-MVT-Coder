@@ -1,0 +1,35 @@
+{% extends "app_agenda/base.html" %}
+
+{% load static %}
+
+{% block articulos_agregado %}
+
+<br>
+<br>
+<section class="page-section portfolio">
+    <div class="container">
+
+        <!-- Clientes Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Clientes</h2>
+
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        
+    </div>
+   
+
+    <br>
+
+    <h1>¡ARTICULO AGREGADO CON EXITO!</h1>
+
+
+</section>
+
+<br>
+<br>
+<h5><a href="{% url 'inicio' %}">Volver al inicio</a></h5>
+
+{% endblock articulos_agregado %}

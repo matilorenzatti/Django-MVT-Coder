@@ -1,0 +1,39 @@
+{% extends "app_agenda/base.html" %}
+
+{% load static %}
+
+{% block formulario_articulos %}
+
+<br>
+<br>
+<section class="page-section portfolio">
+    <div class="container">
+
+        <!-- Clientes Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Clientes</h2>
+
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        
+    </div>
+
+    <br>
+
+    <h1>Formulario - ingreso clientes:</h1>
+    <br>
+
+    <form action="{% url 'cliente-formulario' %}" method="post">
+        {% csrf_token %}
+
+        {{formulario_c.as_p}}
+
+        <input type="submit" value="Crear cliente">
+
+    </form>
+    
+</section>
+
+{% endblock formulario_articulos %}

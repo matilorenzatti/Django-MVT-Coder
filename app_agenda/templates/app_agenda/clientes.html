@@ -19,21 +19,33 @@
             <div class="divider-custom-line"></div>
         
     </div>
+    <br>
+    <br>
+
+    <h5> <a href="{% url 'cliente-formulario' %}">Agregar nuevo cliente</a> </h5>
+    <br>
+    <br>
+    <h5> <a href="{% url 'cliente-buscar' %}">Buscar clientes</a> </h5>
+    <br>
 
     <br>
 
     <h1>Clientes agregados:</h1>
     <br>
 
+    {% if clientes %}
     <ul>
         {% for x in clientes %}
             <li><b>Nombre:</b> {{x.nombre}}   -   <b>Apellido:</b> {{x.apellido}}   -   <b>Mail:</b> {{x.mail}}   -   <b>Fecha de nacimiento:</b> {{x.fecha_nacimiento}}</li>
             <br>
         {% endfor %}
     </ul>
+    {% else %}
+
+    <h4>No hay clientes que tengan ese nombre.</h4>
+    {% endif %}
     
 
 </section>
-
 
 {% endblock clientes %}

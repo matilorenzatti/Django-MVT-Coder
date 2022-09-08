@@ -3,6 +3,7 @@ from django.shortcuts import render
 from app_agenda.models import Clientes, Proveedores, Articulos
 from django.http import HttpResponse
 from django.template import loader
+from app_agenda.forms import ClienteFormulario, ProveedorFormulario, ArticuloFormulario
 
 
 
@@ -33,5 +34,84 @@ def articulos(request):
     plantilla = loader.get_template("app_agenda/articulos.html")
     doc = plantilla.render(articulos_db)
     return HttpResponse(doc)
-    
 
+
+def cliente_formulario(request):
+    if request.method == "POST":
+        formulario_c = ClienteFormulario(request.POST)
+
+        if formulario_c.is_valid():
+            data = formulario_c.cleaned_data
+            cliente = Clientes(nombre=data["nombre"], apellido=data["apellido"] , mail=data["mail"] , fecha_nacimiento=data["fecha_nacimiento"])
+            cliente.save()
+            return render(request, "app_agenda/cliente_agregado.html")
+    else:
+        formulario_c = ClienteFormulario()
+    return render(request, "app_agenda/cliente_form.html", {"formulario_c": formulario_c})
+
+
+def busqueda_cliente(request):
+    return render(request, "app_agenda/cliente_busqueda.html")
+
+
+def buscar_cliente(request):
+    if request.GET["nombre"]:
+        nombre = request.GET["nombre"]
+        clientes = Clientes.objects.filter(nombre__icontains = nombre)
+        return render(request, "app_agenda/clientes.html", {"clientes": clientes})
+    else:
+        return render(request, "app_agenda/clientes.html", {"clientes": []})
+
+
+def proveedor_formulario(request):
+    if request.method == "POST":
+        formulario_c = ClienteFormulario(request.POST)
+
+        if formulario_c.is_valid():
+            data = formulario_c.cleaned_data
+            cliente = Clientes(nombre=data["nombre"], apellido=data["apellido"] , mail=data["mail"] , fecha_nacimiento=data["fecha_nacimiento"])
+            cliente.save()
+            return render(request, "app_agenda/cliente_agregado.html")
+    else:
+        formulario_c = ClienteFormulario()
+    return render(request, "app_agenda/cliente_form.html", {"formulario_c": formulario_c})
+
+
+def busqueda_proveedor(request):
+    return render(request, "app_agenda/cliente_busqueda.html")
+
+
+def buscar_proveedor(request):
+    if request.GET["nombre"]:
+        nombre = request.GET["nombre"]
+        clientes = Clientes.objects.filter(nombre__icontains = nombre)
+        return render(request, "app_agenda/clientes.html", {"clientes": clientes})
+    else:
+        return render(request, "app_agenda/clientes.html", {"clientes": []})
+
+
+def articulo_formulario(request):
+    if request.method == "POST":
+        formulario_a = ArticuloFormulario(request.POST)
+
+        if formulario_a.is_valid():
+            data = formulario_a.cleaned_data
+            articulo = Articulos(id_articulo=data["id_articulo"], nombre=data["nombre"] , precio=data["precio"])
+            articulo.save()
+            return render(request, "app_agenda/articulo_agregado.html")
+    else:
+        formulario_a = ArticuloFormulario()
+    return render(request, "app_agenda/articulo_form.html", {"formulario_a": formulario_a})
+
+
+def busqueda_articulo(request):
+    return render(request, "app_agenda/articulo_busqueda.html")
+
+
+def buscar_articulo(request):
+    if request.GET["id_articulo"]:
+        id = request.GET["id_articulo"]
+        articulos = Articulos.objects.filter(id_articulo__icontains = id)
+        return render(request, "app_agenda/articulos.html", {"articulos": articulos})
+    else:
+        return render(request, "app_agenda/articulos.html", {"articulos": []})

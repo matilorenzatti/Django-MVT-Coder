@@ -19,25 +19,20 @@
             <div class="divider-custom-line"></div>
         
     </div>
-    <br>
-
-    <h5> <a href="{% url 'articulo-formulario' %}">Agregar nuevo articulo</a> </h5>
-    <br>
-    <br>
-    <h5> <a href="{% url 'articulo-buscar' %}">Buscar articulo</a> </h5>
-    <br>
 
     <br>
 
-    <h1>Articulos agregados:</h1>
+    <h1>Formulario - ingreso articulo:</h1>
     <br>
 
-    <ul>
-        {% for x in articulos %}
-            <li><b>ID:</b> {{x.id_articulo}}   -   <b>Nombre:</b> {{x.nombre}}</li>
-            <br>
-        {% endfor %}
-    </ul>
+    <form action="{% url 'articulo-formulario' %}" method="post">
+        {% csrf_token %}
+
+        {{formulario_a.as_p}}
+
+        <input type="submit" value="Crear articulo">
+
+    </form>
 
 </section>
 {% endblock articulos %}
